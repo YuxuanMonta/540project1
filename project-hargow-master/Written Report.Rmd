@@ -1,0 +1,106 @@
+---
+title: "STA523 Final Project Report"
+author: "Aihua Li, Chengxin Yang, Guanqi Zeng, Yuxuan Chen"
+date: "11/23/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Main Objective
+
+The goal for this data analysis project is to provide better insights and 
+understanding of heart diseases. We evaluated the prevalence and 
+fatality of heart diseases both worldwide and nationwide through maps, tables, 
+and model building. 
+
+To give an easier outlook for heart disease, we created a Shiny App which 
+contains two parts: general heart disease information and a user's 10-year-risk 
+evaluation of coronary heart disease (CHD). The first part involves an 
+introduction of heart disease, a choropleth map and a line chart for overall 
+heart disease worldwide from year 1990 to 2017, a bar plot displaying leading 
+causes of death in the U.S. in 2018, another choropleth map on the heart disease 
+information in the U.S. by states, and its corresponding table. The second part 
+provides prediction of heart disease risk by a logistic regression model. 
+This part also includes information on quantiles of user inputs in 
+corresponding risk factors.  
+
+# Data
+
+We relied on several data sets for this project. Part I explores 
+`US_Chronic_Disease_Indicators` obtained from an database created by CDC 
+(Centers for Disease Control and Prevention), 
+`cardiovascular-disease-death-rates` with worldwide heart disease information 
+published on "ourworldindata.org", and `CDC_NCHS_Cause_of_death` with leading 
+causes of death in the U.S. recorded by CDC. Part II uses `framingham` provided 
+by kaggle. 
+
+# Methods
+
+Within the Shiny App, we used plots, maps, tables, and a model to analyze data 
+and present our findings. 
+
+## Part I
+
+The choropleth map and line chart on worldwide heart disease death rate show 
+concise information on the severity of heart disease as a cause of fatality and 
+its trend of spreading from 1990 to 2017. 
+
+Triggered by the check box at the lower right corner, the choropleth map on U.S.
+heart disease or cardiovascular related diseases outputs mean value of 
+prevalence percentage. 
+With interactive inputs from users, this plot is also able to pull results by 
+type of diseases, type of value (crude prevalence or age-justed prevalence), 
+year/year range, gender, and race/ethnicity. A table with specific mean values 
+for states is also attached. 
+
+The bar plot on top 10 leading causes of death in the U.S. in 2018 shows the 
+death rate of corresponding causes, with their binwidth levels colored according 
+to severity.
+
+## Part II
+
+The clean data set for this part contains 3656 rows and 16 variables. We built 
+a logistic regression model predicting the log odds of heart disease risk with 
+backward step wise selection and criterion BIC. The final model includes sex, 
+age, average cigarettes smoked per day, systolic blood pressure, and glucose 
+and all predictors are significant. Using this model, we calculated the 
+predicted heart disease risk of valid input values from the user. The output 
+for the risk evaluation involves a gauge plot indicating risk, and four density 
+plots showing the quantiles of input values in the model population.
+
+# Results
+
+In Part I, we found that although from 1990 to 2017, the heart disease death 
+rate decreases in general. However, the trend in some regions, such as India and 
+China, is not very stable. Russia has been sharply decreasing since 2005. It 
+seems that not only the medical resources and technology make a contribution, 
+but also people care more about their cardiovascular health, at least in some 
+countries such as Russia and the U.S. The choropleth map for the U.S. shows 
+that the prevalence and severity of heart disease is also related to economical 
+factors.
+
+In Part II, the model reveals that age, sex, and systolic blood pressure are 
+important risk factors. A unit increase in all of the risk factors in the model
+would increase the heart disease risk.
+
+# Reference
+
+**data**
+
+https://chronicdata.cdc.gov/api/views/g4ie-h725  <br />
+
+https://ourworldindata.org/grapher/cardiovascular-disease-death-rates  <br />
+
+https://www.cdc.gov/nchs/fastats/deaths.htm  <br />
+
+https://www.kaggle.com/dileep070/heart-disease-prediction-using-logistic-regression
+
+**coding**
+
+https://stackoverflow.com/questions/50042214/fill-a-polygon-with-gradient-scale-in-r
+
+https://rstudio-pubs-static.s3.amazonaws.com/292287_894b2591571b4acdab51269e04f45125.html
+
